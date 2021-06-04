@@ -4,6 +4,7 @@ from .request import get_movies,get_movie,search_movie
 from flask import render_template,request,redirect,url_for
 from .models import review
 from .forms import ReviewForm
+
 Review = review.Review
 
 
@@ -32,7 +33,7 @@ def index():
         return render_template('index.html', title = title, popular = popular_movies, upcoming = upcoming_movie, now_showing = now_showing_movie )
 
 
-@app.route('/movie/<movie_id>')
+@app.route('/movie/<int_id>')
 def movie(movie_id):
 
     '''
