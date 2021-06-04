@@ -4,8 +4,6 @@ class Config:
     '''
     MOVIE_API_BASE_URL ='https://api.themoviedb.org/3/movie/{}?api_key={}'
 
-
-
 class ProdConfig(Config):
     '''
     Pruduction  configuration child class
@@ -13,8 +11,6 @@ class ProdConfig(Config):
         Config: The parent configuration class with General configuration settings
     '''
     MOVIE_API_KEY = '14900549836564fe93311acf17aafa1f'
-
-
 
 class DevConfig(Config):
     '''
