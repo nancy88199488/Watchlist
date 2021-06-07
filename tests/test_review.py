@@ -32,3 +32,4 @@ class TestReview(unittest.TestCase):
         self.new_review.save_review()
         got_reviews = Review.get_reviews(12345)
         self.assertTrue(len(got_reviews) == 1)
+
