@@ -1,8 +1,8 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..requests import get_movies,get_movie,search_movie
 from .forms import ReviewForm
-from ..models import Review
+from ..models import Review, User
 from flask_login import login_required
 
 
@@ -68,4 +68,14 @@ def search(movie_name):
     searched_movies = search_movie(movie_name_format)
     title = f'search results for {movie_name}'
     return render_template('search.html',movies = searched_movies)
+
+@main.route('/user/<uname>')
+def profile(uname):
+    user = User.query.filter_by(username = uname).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template("profile/profile.html", user = user)
+
 
