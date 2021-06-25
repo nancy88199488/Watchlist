@@ -1,55 +1,58 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
+
 <!-- Styles block -->
 
 {% block styles%}
     {{ super() }}
-    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}"/>
+    <link rel="stylesheet" href="{{url_for('static',filename='CSS/index.css')}}/index.css')}}">
 {% endblock %}
 <!-- Content block -->
 {% block content %}
 
-<div class= "container">
-<div class="header">
-    </h>WELCOME TO WATCHLIST</h1>
-    
+<div class="container">
+
+  {% if current_user.is_authenticated%}
+    <h1>Hello {{current_user.username}}</h1>
+  {% else %}
+    <h1 style="text-align: center;">WELCOME TO WATCHLIST</h1>
+  {%endif%}
     <form>
-        <div class="row">
-            <div class="col-md-10 input">
-                <input type="text" name="movie_query" width="80%"  placeholder="Search for a Movie" class="form-control">
-            </div>
-            <div class="col-md-2 input submit">
-                <input type="submit" width="20%" display="inline" value="Submit" class="btn btn-default">
-            </div>
-        </div>
+        <input type="text" name="movie_query" placeholder="Search for a Movie" class="form-control">
+        <input type="submit"  value="Submit" class="btn btn-default">
     </form>
+
 </div>
-    <div class = "row">
-        <div class ="col-md-4">
-            <!-- Popular movie -->
-            <h3> Popular Movies</h3>
-            <ul>
-                {{ macro.displayMovieList(popular)}}
-            </ul>
-        </div>
-        <div class ="col-md-4">
-            <!-- Upcoming movie  -->
-            <h3> Upcoming Movies </h3>
-            <ul>
-                {{ macro.displayMovieList(upcoming)}}
-            </ul>
-        </div>
-        <div class ="col-md-4">
-            <!-- Now showing movie -->
-            <h3>Now Showing</h3>
-            <ul>
-                {{ macro.displayMovieList(now_showing)}}
-            </ul>
-        </div>
+
+<div class="container">
+
+    <!-- Popular movie -->
+    <div class="row">
+        <h2 style="text-align:center; margin-top: 15px;"> Popular Movies</h2>
+        <ul>
+            {{ macro.displayMovieList(popular)}}
+        </ul>
     </div>
+    <!-- Upcoming movie  -->
+    <div class="row">
+
+        <h2 style="text-align:center; margin-top: 15;"> Upcoming Movies </h2>
+        <ul>
+            {{ macro.displayMovieList(upcoming)}}
+        </ul>
+    </div>
+
+    <!-- Now showing movie -->
+    <div class="row">
+
+        <h2 style="text-align:center; margin-top: 15px;">Now Showing</h2>
+        <ul>
+            {{ macro.displayMovieList(now_showing)}}
+        </ul>
+    </div>
+
 </div>
+
+
 
 {% endblock%}
- </body>
-</html>
-
